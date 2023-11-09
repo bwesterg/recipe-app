@@ -3,10 +3,14 @@ import { FormEvent, useRef, useState } from 'react';
 import * as api from './api';
 import { Recipe } from "./types";
 import RecipeCard from "./components/RecipeCard";
+import RecipeModal from "./components/RecipeModal";
 
 const App = () => {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [recipes, setRecipes] = useState<Recipe[]>([])
+  const [selectedRecipe, setSelectedRecipe] = useState<Recipe| undefined>(
+    undefined
+  )
   const pageNumber = useRef(1);
 
   const handleSearchSubmit = async (event: FormEvent) => {
@@ -47,7 +51,7 @@ const App = () => {
 
     {recipes.map((recipe)=> (
       <div>
-        <RecipeCard recipe={recipe}/>
+        <RecipeCard recipe={recipe} onClick={() => setSelectedRecipe(recipe)}/>
       </div>
     ))}
     <button
@@ -56,6 +60,9 @@ const App = () => {
     >
       View More
     </button>
+
+    {/* show recipe details if modal is selected */}
+    {selectedRecipe ? <RecipeModal/> : null}
   </div>
   );
 };
