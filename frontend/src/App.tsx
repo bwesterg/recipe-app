@@ -37,33 +37,35 @@ const App = () => {
   }
 
   return(
-  <div>
-    <form onSubmit={(event) => handleSearchSubmit(event)}>
-      <input 
-        type="text" 
-        required 
-        placeholder="Search for food or recipes"    
-        value={searchTerm}
-        onChange={(event)=> setSearchTerm(event.target.value)}
-      ></input>
-      <button type="submit">Submit</button>
-    </form>
+    <div>
+      <form onSubmit={(event) => handleSearchSubmit(event)}>
+        <input 
+          type="text" 
+          required 
+          placeholder="Search for food or recipes"    
+          value={searchTerm}
+          onChange={(event)=> setSearchTerm(event.target.value)}
+        ></input>
+        <button type="submit">Submit</button>
+      </form>
 
-    {recipes.map((recipe)=> (
-      <div>
-        <RecipeCard recipe={recipe} onClick={() => setSelectedRecipe(recipe)}/>
-      </div>
-    ))}
-    <button
-      className="view-more-button"
-      onClick={handleViewMoreClick}
-    >
-      View More
-    </button>
+      {recipes.map((recipe)=> (
+        <div>
+          <RecipeCard recipe={recipe} onClick={() => setSelectedRecipe(recipe)}/>
+        </div>
+      ))}
+      <button
+        className="view-more-button"
+        onClick={handleViewMoreClick}
+      >
+        View More
+      </button>
 
-    {/* show recipe details if modal is selected */}
-    {selectedRecipe ? <RecipeModal/> : null}
-  </div>
+      {/* show recipe details if modal is selected */}
+      {selectedRecipe ? (
+        <RecipeModal recipeId={selectedRecipe.id.toString()}/> 
+      ) : null}
+    </div>
   );
 };
 
