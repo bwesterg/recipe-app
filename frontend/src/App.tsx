@@ -63,7 +63,10 @@ const App = () => {
 
       {/* show recipe details if modal is selected */}
       {selectedRecipe ? (
-        <RecipeModal recipeId={selectedRecipe.id.toString()}/> 
+        <RecipeModal 
+          recipeId={selectedRecipe.id.toString()} 
+          onClose={()=>setSelectedRecipe(undefined)}
+        /> 
       ) : null}
     </div>
   );
