@@ -1,4 +1,9 @@
+import { useState } from 'react';
+
 const RecipeModal = () => {
+
+    const [recipeSummary, setRecipeSummary] = useState<>();
+
     return(
         <>
             <div className="overlay"></div>  
