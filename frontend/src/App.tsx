@@ -68,6 +68,9 @@ const App = () => {
           onClose={()=>setSelectedRecipe(undefined)}
         /> 
       ) : null}
+      {/* setting RecipeModal to be null if setSelectedRecipe is 
+      undefined - which happens when close button is 
+      clicked - and if RecipeModal is null, it doesn't appear. */}
     </div>
   );
 };
