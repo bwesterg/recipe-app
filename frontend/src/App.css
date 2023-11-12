@@ -39,3 +39,9 @@
   cursor: pointer;
   height: 20px;
 }
+
+.tabs {
+  display: flex;
+  gap: 2em;
+  cursor: pointer;
+}
