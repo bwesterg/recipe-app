@@ -15,7 +15,7 @@ const App = () => {
   const [selectedRecipe, setSelectedRecipe] = useState<Recipe | undefined>(
     undefined
   );
-  const [selectedTab, setSelectedTab] = useState<Tabs>();
+  const [selectedTab, setSelectedTab] = useState<Tabs>(); 
   const [favoriteRecipes, setFavoriteRecipes] = useState<Recipe[]>([]);
   const pageNumber = useRef(1);
 
@@ -53,6 +53,27 @@ const App = () => {
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const addFavoriteRecipe = async (recipe: Recipe)=>{
+    try {
+      await api.addFavoriteRecipe(recipe);
+      setFavoriteRecipes([...favoriteRecipes, recipe])
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const removeFavoriteRecipe = async (recipe: Recipe)=> {
+    try {
+      await api.removeFavoriteRecipe(recipe);
+      const updatedRecipes = favoriteRecipes.filter(
+        (favRecipe) => recipe.id !== favRecipe.id
+      );
+      setFavoriteRecipes(updatedRecipes);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return(
@@ -74,11 +95,20 @@ const App = () => {
             <button type="submit">Submit</button>
           </form>
 
-          {recipes.map((recipe)=> (
-            <div>
-              <RecipeCard recipe={recipe} onClick={() => setSelectedRecipe(recipe)}/>
-            </div>
-          ))}
+          {recipes.map((recipe)=> {
+            const isFavorite = favoriteRecipes.some(
+              (favRecipe) => recipe.id === favRecipe.id
+            );
+
+            return (
+              <RecipeCard
+                recipe={recipe}
+                onClick={() => setSelectedRecipe(recipe)}
+                onFavoriteButtonClick={isFavorite ? removeFavoriteRecipe : addFavoriteRecipe} 
+                isFavorite={isFavorite}
+              />
+            );
+          })}
           <button
             className="view-more-button"
             onClick={handleViewMoreClick}
@@ -94,6 +124,8 @@ const App = () => {
             <RecipeCard 
               recipe={recipe} 
               onClick={()=> setSelectedRecipe(recipe)}
+              onFavoriteButtonClick={removeFavoriteRecipe}  
+              isFavorite={true}
             />
           ))}
         </div>
