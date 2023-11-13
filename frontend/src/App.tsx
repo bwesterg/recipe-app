@@ -23,7 +23,7 @@ const App = () => {
     const fetchFavoriteRecipes = async () => {
       try {
         const favoriteRecipes = await api.getFavoriteRecipes()
-        setFavoriteRecipes(favoriteRecipes);
+        setFavoriteRecipes(favoriteRecipes.results);
       } catch (error) {
         console.log(error);
       }

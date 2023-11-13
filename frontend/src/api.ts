@@ -23,7 +23,7 @@ export const getRecipeSummary = async (recipeId: string) => {
 };
 
 export const getFavoriteRecipes = async() => {
-    const url = new URL('http://localhost:5000/api/recipe/favorite')
+    const url = new URL('http://localhost:5000/api/recipes/favorite')
     const response = await fetch(url);
 
     if(!response.ok){
