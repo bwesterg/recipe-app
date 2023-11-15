@@ -4,6 +4,7 @@ import * as api from './api';
 import { Recipe } from "./types";
 import RecipeCard from "./components/RecipeCard";
 import RecipeModal from "./components/RecipeModal";
+import { AiOutlineSearch } from "react-icons/ai";
 
 
 type Tabs = "search" | 'favorites';
@@ -104,23 +105,25 @@ const App = () => {
               value={searchTerm}
               onChange={(event)=> setSearchTerm(event.target.value)}
             ></input>
-            <button type="submit">Submit</button>
+            <button type="submit"><AiOutlineSearch size={40}/></button>
           </form>
 
-          {recipes.map((recipe)=> {
-            const isFavorite = favoriteRecipes.some(
-              (favRecipe) => recipe.id === favRecipe.id
-            );
+          <div className="recipe-grid">
+            {recipes.map((recipe)=> {
+              const isFavorite = favoriteRecipes.some(
+                (favRecipe) => recipe.id === favRecipe.id
+              );
 
-            return (
-              <RecipeCard
-                recipe={recipe}
-                onClick={() => setSelectedRecipe(recipe)}
-                onFavoriteButtonClick={isFavorite ? removeFavoriteRecipe : addFavoriteRecipe} 
-                isFavorite={isFavorite}
-              />
-            );
-          })}
+              return (
+                <RecipeCard
+                  recipe={recipe}
+                  onClick={() => setSelectedRecipe(recipe)}
+                  onFavoriteButtonClick={isFavorite ? removeFavoriteRecipe : addFavoriteRecipe} 
+                  isFavorite={isFavorite}
+                />
+              );
+            })}
+          </div>
           <button
             className="view-more-button"
             onClick={handleViewMoreClick}
@@ -131,7 +134,7 @@ const App = () => {
       )}
 
       {selectedTab === "favorites" && (
-        <div>
+        <div className="recipe-grid">
           {favoriteRecipes.map((recipe) => (
             <RecipeCard 
               recipe={recipe} 
