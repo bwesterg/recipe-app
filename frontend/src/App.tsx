@@ -85,13 +85,13 @@ const App = () => {
       </div>
       <div className="tabs">
         <h1 
-          className={selectedTab ==="search" ? "tab-active": ""}
+          className={selectedTab === "search" ? "tab-active": ""}
           onClick={()=> setSelectedTab("search")}
         >
         Recipe Search</h1>
         
         <h1 
-          className={selectedTab ==="favorites" ? "tab-active": ""}
+          className={selectedTab === "favorites" ? "tab-active": ""}
           onClick={()=> setSelectedTab("favorites")}
         >Favorites</h1>
       </div>
