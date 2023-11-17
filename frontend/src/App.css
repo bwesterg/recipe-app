@@ -18,7 +18,7 @@ body {
 } */
 
 .tab-active {
-  border-bottom: 4px orange solid;
+  border-bottom: 4px blueviolet solid;
   padding-bottom: 0.5em;
 }
 
@@ -26,6 +26,8 @@ form {
   display: flex;
   background-color: white;
   align-items: center;
+  margin-left: 2em;
+  margin-right: 2em;
 }
 
 input {

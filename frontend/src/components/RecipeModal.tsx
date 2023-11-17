@@ -37,7 +37,7 @@ const RecipeModal = ({ recipeId, onClose }: Props) => {
                 <div className="modal-content">
                     <div className="modal-header">
                         <h2>{recipeSummary.title}</h2>
-                        <span className="close-btn" onClick={onClose}>&times;</span>
+                        <span className="close-btn" onClick={onClose}>Close &times;</span>
                     </div>
                     <p dangerouslySetInnerHTML={{ __html: recipeSummary.summary }}></p>
                     {/* do not use dangerouslySetInnerHTML unless api source is trusted b/c malevolent code can be injected */}
