@@ -8,7 +8,10 @@ export const searchRecipes = async (searchTerm: string, page:number) => {
     const response = await fetch(baseUrl)
     if(!response.ok){
         throw new Error(`HTTP error! Status: ${response.status}`);
-    }
+    } 
+    // else {
+    //     console.log(Error);
+    // }
 
     return response.json()
 };
@@ -20,6 +23,9 @@ export const getRecipeSummary = async (recipeId: string) => {
     if(!response.ok){
         throw new Error(`HTTP error! Status: ${response.status}`);
     }
+        // else {
+    //     console.log(Error);
+    // }
 
     return response.json();
 };
@@ -71,4 +77,7 @@ export const removeFavoriteRecipe = async (recipe: Recipe) => {
     if(!response.ok){
         throw new Error(`HTTP error! Status: ${response.status}`);
     }
+        // else {
+    //     console.log(Error);
+    // }
 }
